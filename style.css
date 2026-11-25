@@ -1,0 +1,325 @@
+/* ==========================================================
+   My Experience
+   This one file controls how every page on the site looks.
+   Change something here and it changes everywhere.
+   ========================================================== */
+
+
+/* ---- Colors and fonts ------------------------------------
+   To change the look of the site, change the values below.
+   Each color is a code that starts with #. Search the web for
+   "color picker" to find the code for any color you like.
+   ---------------------------------------------------------- */
+:root {
+  --background: #faf5ec;        /* the page itself: warm cream */
+  --text: #2e2823;              /* main writing: soft brown-black */
+  --soft-text: #6b5e53;         /* dates, captions, the footer */
+  --accent: #a4461f;            /* links and small labels: terracotta */
+  --line: #e7dccb;              /* thin dividing lines */
+  --quote-background: #f3eadb;  /* the box behind a quote */
+
+  --reading-font: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --label-font: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  color-scheme: light dark;
+}
+
+/* The same colors for people whose phone or computer is set to
+   dark mode. The site switches on its own; nothing to do here. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1f1b18;
+    --text: #ece4d8;
+    --soft-text: #b3a797;
+    --accent: #e6a07e;
+    --line: #3b332c;
+    --quote-background: #2a2420;
+  }
+}
+
+
+/* ---- The page as a whole --------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  max-width: 42rem;             /* keeps lines a comfortable length */
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  background: var(--background);
+  color: var(--text);
+  font-family: var(--reading-font);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  overflow-wrap: break-word;
+}
+
+/* Slightly larger writing on tablets and computers. */
+@media (min-width: 40em) {
+  body {
+    font-size: 1.1875rem;
+  }
+}
+
+
+/* ---- Links ----------------------------------------------- */
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+
+/* ---- Top of every page: site name and menu --------------- */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0 1.5rem;
+  padding: 1.25rem 0 0.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.site-title {
+  padding: 0.4rem 0;
+  color: var(--text);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+.site-nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.site-nav a {
+  padding: 0.6rem 0;
+  color: var(--soft-text);
+  font-family: var(--label-font);
+  font-size: 0.9375rem;
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  color: var(--accent);
+}
+
+.site-nav a[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.4em;
+}
+
+
+/* ---- Headings and paragraphs ----------------------------- */
+main {
+  padding-top: 2.5rem;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+h1 {
+  margin: 0 0 1rem;
+  font-size: 2rem;
+}
+
+h2 {
+  margin: 2.5rem 0 0.75rem;
+  font-size: 1.4rem;
+}
+
+h3 {
+  margin: 2rem 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+p,
+ul,
+ol {
+  margin: 0 0 1.25rem;
+}
+
+li {
+  margin-bottom: 0.4rem;
+}
+
+@media (min-width: 40em) {
+  h1 {
+    font-size: 2.4rem;
+  }
+}
+
+
+/* ---- Small labels: dates, topics, "back" links ----------- */
+.post-meta,
+.section-label,
+.back-link {
+  font-family: var(--label-font);
+  font-size: 0.8125rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.post-meta {
+  margin: 0 0 0.4rem;
+  color: var(--soft-text);
+}
+
+.section-label {
+  margin: 3rem 0 0;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.back-link {
+  margin: 0 0 2rem;
+}
+
+.back-link a {
+  display: inline-block;
+  padding: 0.5rem 0;
+  text-decoration: none;
+}
+
+.back-link a:hover {
+  text-decoration: underline;
+}
+
+
+/* ---- Home page: the welcome and the list of posts -------- */
+.welcome p {
+  font-size: 1.15em;
+}
+
+.post-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.post-list li {
+  margin: 0;
+  padding: 1.6rem 0;
+}
+
+.post-list li + li {
+  border-top: 1px solid var(--line);
+}
+
+.post-list h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.45rem;
+}
+
+.post-list h3 a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.post-list h3 a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.post-list p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* ---- Inside a post --------------------------------------- */
+.post-header {
+  margin-bottom: 2rem;
+}
+
+.post-header h1 {
+  margin: 0;
+}
+
+/* A quote that stands apart from the rest of the writing. */
+blockquote {
+  margin: 1.75rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  background: var(--quote-background);
+  font-style: italic;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* The name of whoever said the quote. */
+.quote-by {
+  color: var(--soft-text);
+  font-family: var(--label-font);
+  font-size: 0.875rem;
+  font-style: normal;
+}
+
+/* A question in a questionnaire. The answer goes in the
+   ordinary paragraph right after it. */
+.question {
+  margin: 1.75rem 0 0.3rem;
+  font-weight: 700;
+}
+
+/* Photos shrink to fit the screen, however big the original is. */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.75rem auto;
+  border-radius: 6px;
+}
+
+/* A thin line to mark a pause or a change of subject. */
+hr {
+  margin: 2.5rem 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+
+/* ---- Bottom of every page -------------------------------- */
+.site-footer {
+  margin-top: 4rem;
+  padding: 1.5rem 0 3rem;
+  border-top: 1px solid var(--line);
+  color: var(--soft-text);
+  font-family: var(--label-font);
+  font-size: 0.875rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
